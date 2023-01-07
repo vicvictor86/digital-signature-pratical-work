@@ -6,7 +6,8 @@ def generate_signature(private_key, hash_object):
 
 def verify_signature(public_key, signature, hash_object):
   try: 
-    pkcs1_15.new(RSA.import_key(public_key)).verify(hash_object, signature)
+    key = RSA.import_key(public_key)
+    pkcs1_15.new(key).verify(hash_object, signature)
     return True
   except (ValueError, TypeError):
     return False
