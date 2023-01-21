@@ -13,7 +13,10 @@ def generate_hash(text, hash_algorithm_name):
   if hash_algorithm is None:
     return None
 
-  return hash_algorithm.new(data=text.encode('utf-8'))
+  if type(text) is not bytes:
+    text = text.encode('utf-8')
+
+  return hash_algorithm.new(data=text)
 
 def get_hash_algorithm(hash_algorithm_name):
   try:
